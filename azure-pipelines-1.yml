@@ -34,8 +34,8 @@ steps:
 #    configuration: '$(buildConfiguration)'
 - task: dependabot@1
   inputs:
-    packageManager: 'nuget'
     versioningStrategy: 'auto'
+    
 - task: trivy@1
   inputs:
     version: 'latest'
