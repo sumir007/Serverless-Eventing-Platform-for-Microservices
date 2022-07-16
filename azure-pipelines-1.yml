@@ -34,7 +34,9 @@ steps:
 #    configuration: '$(buildConfiguration)'
 - task: dependabot@1
   inputs:
+    packageManager: 'nuget'
     versioningStrategy: 'auto'
+    dockerImageRepository: 'tingle/dependabot-azure-devops'
     
 - task: trivy@1
   inputs:
