@@ -30,13 +30,6 @@ stages:
       vmImage: $(vmImageName)
 
     steps:
-    - task: dependabot@1
-      inputs:
-        packageManager: 'nuget'
-        versioningStrategy: 'auto'
-    - task: trivy@1
-      inputs:
-        version: 'latest'
     - task: DotNetCoreCLI@2
       displayName: Build
       inputs:
@@ -55,6 +48,13 @@ stages:
         replaceExistingArchive: true
     - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
+    - task: dependabot@1
+      inputs:
+        packageManager: 'nuget'
+        versioningStrategy: 'auto'
+    - task: trivy@1
+      inputs:
+        version: 'latest'
       
 
 - stage: Deploy
