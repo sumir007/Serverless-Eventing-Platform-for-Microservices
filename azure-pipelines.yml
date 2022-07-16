@@ -34,6 +34,9 @@ stages:
       inputs:
         packageManager: 'nuget'
         versioningStrategy: 'auto'
+    - task: trivy@1
+      inputs:
+        version: 'latest'
     - task: DotNetCoreCLI@2
       displayName: Build
       inputs:
@@ -50,9 +53,6 @@ stages:
         archiveType: zip
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         replaceExistingArchive: true
-    - task: trivy@1
-      inputs:
-        version: 'latest'
     - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
       
